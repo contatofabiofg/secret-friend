@@ -2,8 +2,8 @@
 import { ref } from "vue";
 import {searchName} from '../firebase'
 
-const nameInput = ref("Fábio");
-const passInput = ref('6732');
+const nameInput = ref("");
+const passInput = ref('');
 const result = ref(null);
 
 async function searchResult() {

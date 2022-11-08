@@ -51,8 +51,17 @@ export const updateName = (id, name) => {
 */
 export async function deleteNames(name) {
 
-  await deleteDoc(doc(db, "names", name));
+  let list = []
 
+  await getDocs(collection(db, "names")).then( async (response) => {
+    response.forEach((element) => {
+       list.push(element.data().name)
+    })
+    for (let i = 0, j = list.length - 1; i <= j; i++) {
+      await deleteDoc(doc(db, "names", list[i]));
+    }
+  }
+  )
 };
 
 

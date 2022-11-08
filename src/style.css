@@ -12,7 +12,10 @@
 html {
   width: 100vw;
   height: 100vh;
-  background-color: rgb(47, 70, 50);
+  background-image: url('./assets/wall.jpg');
+  background-position: center;
+  background-size: cover;
+  font-family: "Roboto";
 }
 
 
@@ -24,6 +27,16 @@ input {
   p-1
   rounded-md
   outline-0
+}
+
+a {
+  @apply
+  mx-2
+  cursor-pointer
+  font-bold
+  text-emerald-600
+  duration-100
+  hover:text-emerald-500
 }
 
 h1 {

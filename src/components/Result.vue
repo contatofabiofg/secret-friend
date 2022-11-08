@@ -27,7 +27,7 @@ result.value = await searchName(nameInput.value, passInput.value)
     <button @click="searchResult()">Resultado</button>
 
     <div v-if="result">
-    <p>Olá, {{result.name}}! Seu amigo ou amiga secreto(a) é... {{result.friend}}!</p>
+    <p class="mt-3">Olá, <b>{{result.name}}</b>! Seu amigo ou amiga secreto(a) é... <b>{{result.friend}}</b>!</p>
     </div>
 
 

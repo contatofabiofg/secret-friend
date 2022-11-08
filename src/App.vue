@@ -5,11 +5,12 @@ const router = useRouter()
 
 <template>
 <div class="w-full h-screen flex justify-center items-center">
-    <div class="w-[300px] flex flex-col justify-center items-center bg-white py-3 rounded-lg">
+    <div class="w-[350px] max-w-[95%] flex flex-col justify-center items-center bg-white py-3 rounded-lg">
     <h1>Amigo Secreto</h1>
     <div class="flex mb-5">
-      <button  @click="router.push('/')">Home</button>
-      <button  @click="router.push('/resultado')">Resultado</button>
+      <a @click="router.push('/')" >Home</a>
+      |
+      <a @click="router.push('/resultado')">Resultado</a>
       
      </div>
      <div class="w-full px-3">

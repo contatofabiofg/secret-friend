@@ -3,6 +3,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 </script>
 
+
 <template>
 <div class="w-full h-screen flex flex-col justify-center items-center">
     <div class="w-[350px] max-w-[95%] flex flex-col justify-center items-center bg-white py-3 rounded-lg">

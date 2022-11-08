@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from "../components/Home.vue"
-import Result from "../components/Result.vue"
-import Login from "../components/Login.vue"
+import Home from '../components/Home.vue'
+import Result from '../components/Result.vue'
+import Login from '../components/Login.vue'
 import { getAuth } from 'firebase/auth'
 
 const router = createRouter({
@@ -16,18 +16,17 @@ const router = createRouter({
       },
     },
     {
-      path: '/resultado',
+      path: '/resultado/:id',
       name: 'Result',
       component: Result,
     },
-    
+
     {
       path: '/login',
       name: 'Login',
       component: Login,
     },
-
-  ]
+  ],
 })
 
 router.beforeEach((to, from, next) => {
@@ -39,15 +38,13 @@ router.beforeEach((to, from, next) => {
     if (currentUser) {
       next()
     } else {
-
       //CORRIGIR AQUI DEPOIS PRA SÓ PERMITIR COM LOGIN
-      //next('/login')
-      next()
+      next('/login')
+      //next()
     }
   } else {
     next()
   }
-
 })
 
 export default router

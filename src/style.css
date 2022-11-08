@@ -8,13 +8,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  background-image: url('./assets/wall.jpg');
+  background-position: center;
+  background-size: cover;
+}
 
 html {
   width: 100vw;
   height: 100vh;
-  background-image: url('./assets/wall.jpg');
-  background-position: center;
-  background-size: cover;
+  
   font-family: "Roboto";
 }
 
@@ -22,10 +25,10 @@ html {
 input {
   @apply
   border
-  border-slate-600
+  border-slate-300
   w-full
   p-1
-  rounded-md
+  rounded
   outline-0
   }
   input:disabled {
@@ -62,7 +65,7 @@ button {
   @apply
   p-1
   px-3
-  rounded-full
+  rounded
   m-1
   bg-emerald-700
   text-white
@@ -71,7 +74,5 @@ button {
 
 }
 
-ul {
-  list-style-type: disc;
-}
+
 

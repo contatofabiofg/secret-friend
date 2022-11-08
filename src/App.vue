@@ -1,40 +1,65 @@
 <script setup>
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { getAuth } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 const auth = getAuth()
 const router = useRouter()
+const logoutLink = ref(false)
+const collection = ref(null)
+
+onAuthStateChanged(auth, () => {
+  if (auth.currentUser) {
+    collection.value = auth.currentUser.email
+    logoutLink.value = true
+  } else {
+    logoutLink.value = false
+  }
+})
 
 function logout() {
   auth.signOut()
 
-    router.push({ name: 'Login' })
+  router.push({ name: 'Login' })
 }
-
 </script>
 
-
 <template>
-<div class="w-full h-screen flex flex-col justify-center items-center">
-    <div class="w-[350px] max-w-[95%] flex flex-col justify-center items-center bg-white py-3 rounded-lg">
-    <img src="./assets/title.png" alt="Amigo Secreto Banner" class="w-[90%]">
-    <div class="flex mb-5">
-      <a @click="router.push('/')" >Home</a>
-      |
-      <a @click="router.push('/resultado')">Resultado</a>
-      |
-      <a @click="logout()">Sair</a>
+  <div class="flex flex-col justify-center items-center my-10">
+    <div
+      class="w-[350px] max-w-[95%] flex flex-col items-center bg-white border border-slate-300 py-3 lg:mt-10 rounded-lg"
+    >
+      <img
+        src="./assets/title.png"
+        alt="Amigo Secreto Banner"
+        class="w-[90%]"
+      />
 
-      
-     </div>
-     <div class="w-full px-3">
-      <router-view></router-view>
-     </div>
-    
+      <div class="w-full px-3 h-full">
+        <router-view></router-view>
+      </div>
+    </div>
+    <div class="text-xs text-white mt-2 opacity-50">
+      Desenvolvido por
+      <a href="https://github.com/contatofabiofg" target="_blank">
+        Fábio Gonçalves</a
+      >
+    </div>
   </div>
-  <div class="text-xs text-white mt-2 opacity-50">Desenvolvido por <a href="https://github.com/contatofabiofg" target="_blank"> Fábio Gonçalves</a></div>
-</div>
-  
+
+  <div
+    v-if="logoutLink"
+    class="flex fixed top-5 left-5 cursor-pointer opacity-50 hover:opacity-80 duration-100"
+    @click="logout()"
+  >
+    <img
+      src="./assets/logout.png"
+      class="invert w-5"
+      alt=""
+      role="presentation"
+    />
+    <a class="text-white hover:text-white">Sair</a>
+  </div>
 </template>
 
 <style scoped></style>

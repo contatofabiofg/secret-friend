@@ -21,10 +21,10 @@ getData()
 });
 
 
-function getData() {
-  let data = getAllDocs(collection.value)
+async function getData() {
+  let data = await getAllDocs(collection.value)
   if(data) {
-console.log(data)
+    console.log(data)
   }
 }
 

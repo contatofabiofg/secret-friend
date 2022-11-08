@@ -1,7 +1,7 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import {createName, deleteNames, getAllDocs} from '../firebase'
-import { getAuth } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 
 const auth = getAuth();
@@ -12,14 +12,14 @@ const secondNameList = ref([]);
 const result = ref([]);
 const copyClicked = ref(false)
 
-onMounted(() => {
-  debugger
+onAuthStateChanged(auth, () => {
   if(auth.currentUser) {
 
-    collection.value = auth.currentUser.uid
-    getData()
-  }
-})
+collection.value = auth.currentUser.uid
+getData()
+}
+});
+
 
 function getData() {
   let data = getAllDocs(collection.value)

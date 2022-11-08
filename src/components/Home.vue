@@ -14,8 +14,13 @@ if(secondNameList.value.length > 0) {
 }
 
   if(nameInput.value != '') {
-    nameList.value.push(nameInput.value);
-  nameInput.value = "";
+    if (nameList.value.length < 20) {
+      nameList.value.push(nameInput.value);
+      nameInput.value = "";
+    } else {
+      alert("Limite de 20 nomes por sorteio atingido")
+    }
+    
   }
  
 }
@@ -105,7 +110,7 @@ function deleteAll() {
   </div>
  
 
-    <div v-if="nameList.length > 0">
+    <div v-if="nameList.length > 0" class="my-2">
       <ul v-for="(name, index) in nameList" :key="index">
         <li @click="eraseName(index)" class="select-none cursor-pointer">{{ name }} <span>❌</span></li>
       </ul>
@@ -126,7 +131,7 @@ function deleteAll() {
     
   </div>
 
-  <span :class="[copyClicked ? 'opacity-100' : 'opacity-0']" class="bg-white/75 p-2 text-xs fixed top-5 right-5 z-10 duration-100">Copiado!</span>
+  <span :class="[copyClicked ? 'opacity-100' : 'opacity-0']" class="bg-white/75 p-2 text-xs fixed top-5 right-5 z-10 duration-100 select-none">Copiado!</span>
 </template>
 
 <style scoped></style>

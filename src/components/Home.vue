@@ -13,7 +13,9 @@ const result = ref([]);
 const copyClicked = ref(false)
 
 onMounted(() => {
+  debugger
   if(auth.currentUser) {
+
     collection.value = auth.currentUser.uid
     getData()
   }

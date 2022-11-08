@@ -3,15 +3,13 @@ import { onMounted } from 'vue';
 import { useRouter } from 'vue-router'
 import { getAuth, signInWithRedirect , FacebookAuthProvider, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth'
 
+const router = useRouter()
 const auth = getAuth()
 const providerFacebook = new FacebookAuthProvider();
 const providerGoogle = new GoogleAuthProvider();
 
 onMounted(() => {
-  if(auth.currentUser) {
-    console.log(auth.currentUser)
-  }
-  
+   console.log(auth.currentUser)
 }),
 
 onAuthStateChanged(auth, (user) => {

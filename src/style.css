@@ -27,7 +27,14 @@ input {
   p-1
   rounded-md
   outline-0
-}
+  }
+  input:disabled {
+
+    @apply
+    bg-gray-300
+    text-gray-400
+    
+  }
 
 a {
   @apply

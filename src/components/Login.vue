@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted } from 'vue';
+import { useRouter } from 'vue-router'
 import { getAuth, signInWithRedirect , FacebookAuthProvider, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth'
 
 const auth = getAuth()
@@ -7,7 +8,10 @@ const providerFacebook = new FacebookAuthProvider();
 const providerGoogle = new GoogleAuthProvider();
 
 onMounted(() => {
-  console.log(auth.currentUser)
+  if(auth.currentUser) {
+    console.log(auth.currentUser)
+  }
+  
 }),
 
 onAuthStateChanged(auth, (user) => {
@@ -15,7 +19,7 @@ onAuthStateChanged(auth, (user) => {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
     const uid = user.uid;
-    console.log(uid)
+    router.push({ name: 'Home' })
     // ...
   } else {
     // User is signed out

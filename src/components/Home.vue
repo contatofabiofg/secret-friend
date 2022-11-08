@@ -1,16 +1,39 @@
 <script setup>
-import { ref } from "vue";
-import {createName, deleteNames} from '../firebase'
+import { ref, onMounted } from "vue";
+import {createName, deleteNames, getAllDocs} from '../firebase'
+import { getAuth } from 'firebase/auth'
 
+
+const auth = getAuth();
+const collection = ref('33333333');
 const nameInput = ref("");
 const nameList = ref([]);
 const secondNameList = ref([]);
 const result = ref([]);
 const copyClicked = ref(false)
 
+onMounted(() => {
+  if(auth.currentUser) {
+    collection.value = auth.currentUser.uid
+    getData()
+  }
+})
+
+function getData() {
+  let data = getAllDocs(collection.value)
+  if(data) {
+console.log(data)
+  }
+}
+
 function addToList() {
-if(secondNameList.value.length > 0) {
-  deleteAll()
+if(result.value.length > 0) {
+  if (window.confirm("Ao adicionar um novo nome, você apagará o sorteio atual. Deseja continuar")) {
+    deleteAll()
+  } else {
+    return false
+  }
+  
 }
 
   if(nameInput.value != '') {
@@ -71,7 +94,7 @@ function generateResult() {
   result.value = [];
   for (let i = 0, j = nameList.value.length; i < j; i++) {
     let obj = { name: nameList.value[i], friend: secondNameList.value[i], pass: Math.random().toString().slice(3,7)};
-    createName(obj)
+    createName(obj, collection.value)
     result.value.push(obj);
   }
 }
@@ -81,20 +104,23 @@ function copy(name, pass) {
   setTimeout(()=> {
     copyClicked.value = false
   },2000)
-  navigator.clipboard.writeText(`Acesse o site https://secret-friend-phi.vercel.app/ e veja quem você tirou no Amigo Secreto! Basta incluir seu nome (${name}) e sua senha (${pass})`)
+  navigator.clipboard.writeText(`Acesse o site https://secret-friend-phi.vercel.app/${collection.value} e veja quem você tirou no Amigo Secreto! Basta incluir seu nome (${name}) e sua senha (${pass})`)
 }
 
 function deleteAll() {
   result.value = [];
   secondNameList.value = [];
   nameList.value = [];
-  deleteNames()
+  deleteNames(collection.value)
 
 }
 </script>
 
 <template>
   <div class="flex flex-col justify-center items-center">
+
+    <label for="collection" class="text-xs text-slate-600">Código do seu sorteio</label>
+    <p class="text-xs text-slate-600 mb-3">{{collection}}</p>
 
     <label for="name" class="text-xs text-slate-600">Insira pelo menos três nomes</label>
     <div class="flex">

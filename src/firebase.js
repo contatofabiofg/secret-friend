@@ -17,15 +17,21 @@ const firebaseApp = initializeApp(config);
 const db = getFirestore(firebaseApp);
 
 
-export const createName = (item) => {
-  setDoc(doc(db, "names", item.name), item)
+export const createName = (item, collection) => {
+  setDoc(doc(db, collection, item.name), item)
 
 };
 
-export async function searchName(name, pass) {
+export async function getAllDocs(collection) {
+  await getDocs(collection(db, collection)).then((response) => {
+  return response
+  })
+}
+
+export async function searchName(name, pass, collection) {
   let obj 
 
-  await getDocs(collection(db, "names")).then((response) => {
+  await getDocs(collection(db, collection)).then((response) => {
     response.forEach((element) => {
       if (element.data().name.toLowerCase() == name.toLowerCase() && element.data().pass == pass) {
         obj = {name: element.data().name, friend: element.data().friend}
@@ -49,16 +55,16 @@ export const updateName = (id, name) => {
   return namesCollection.doc(id).update(name);
 };
 */
-export async function deleteNames(name) {
+export async function deleteNames(collection) {
 
   let list = []
 
-  await getDocs(collection(db, "names")).then( async (response) => {
+  await getDocs(collection(db, collection)).then( async (response) => {
     response.forEach((element) => {
        list.push(element.data().name)
     })
     for (let i = 0, j = list.length - 1; i <= j; i++) {
-      await deleteDoc(doc(db, "names", list[i]));
+      await deleteDoc(doc(db, collection, list[i]));
     }
   }
   )

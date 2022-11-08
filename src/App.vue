@@ -1,6 +1,16 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import { getAuth } from 'firebase/auth'
+
+const auth = getAuth()
 const router = useRouter()
+
+function logout() {
+  auth.signOut()
+
+    router.push({ name: 'Login' })
+}
+
 </script>
 
 
@@ -12,6 +22,9 @@ const router = useRouter()
       <a @click="router.push('/')" >Home</a>
       |
       <a @click="router.push('/resultado')">Resultado</a>
+      |
+      <a @click="logout()">Sair</a>
+
       
      </div>
      <div class="w-full px-3">

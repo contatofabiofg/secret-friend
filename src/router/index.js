@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../components/Home.vue'
 import Result from '../components/Result.vue'
 import Login from '../components/Login.vue'
+import SiginUp from '../components/SiginUp.vue'
 import { getAuth } from 'firebase/auth'
 
 const router = createRouter({
@@ -20,11 +21,15 @@ const router = createRouter({
       name: 'Result',
       component: Result,
     },
-
     {
       path: '/login',
       name: 'Login',
       component: Login,
+    },
+    {
+      path: '/siginup',
+      name: 'SiginUp',
+      component: SiginUp,
     },
   ],
 })

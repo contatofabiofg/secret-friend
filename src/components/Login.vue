@@ -1,9 +1,10 @@
 <script setup>
-import { onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import {
   getAuth,
   signInWithRedirect,
+  signInWithEmailAndPassword,
   FacebookAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -11,24 +12,37 @@ import {
 
 const router = useRouter()
 const auth = getAuth()
+const emailInput = ref('')
+const passInput = ref(null)
+const user = ref(null)
 const providerFacebook = new FacebookAuthProvider()
 const providerGoogle = new GoogleAuthProvider()
 
-onMounted(() => {
-  console.log(auth.currentUser)
-}),
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      //const uid = user.uid;
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    //const uid = user.uid;
+    router.push({ name: 'Home' })
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+})
+
+function login() {
+  signInWithEmailAndPassword(auth, emailInput.value, passInput.value)
+    .then((userCredential) => {
+      // Signed in
+      user.value = userCredential.user
       router.push({ name: 'Home' })
       // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  })
+    })
+    .catch((error) => {
+      alert(error)
+    })
+}
 
 function handleFacebookLogin() {
   signInWithRedirect(auth, providerFacebook)
@@ -42,14 +56,14 @@ function handleGoogleLogin() {
 <template>
   <div class="flex flex-col justify-center h-full">
     <label for="email">Email</label>
-    <input type="text" id="email" />
+    <input type="text" id="email" v-model="emailInput" />
     <label for="pass">Senha</label>
-    <input type="text" id="pass" />
+    <input type="password" id="pass" v-model="passInput" />
     <div class="flex justify-between text-xs my-2">
-      <a href="">Criar nova conta</a>
+      <a href="" @click="router.push({ name: 'SiginUp' })">Criar nova conta</a>
       <a href="">Esqueceu a senha?</a>
     </div>
-    <button>Entrar</button>
+    <button @click="login()">Entrar</button>
 
     <div
       tabindex="0"

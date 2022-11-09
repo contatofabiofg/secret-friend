@@ -32,7 +32,7 @@ function logout() {
       <img
         src="./assets/title.png"
         alt="Amigo Secreto Banner"
-        class="w-[90%]"
+        class="w-[80%] ml-3 mb-3"
       />
 
       <div class="w-full px-3 h-full">

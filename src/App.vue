@@ -27,7 +27,7 @@ function logout() {
 <template>
   <div class="flex flex-col justify-center items-center my-10">
     <div
-      class="w-[350px] max-w-[95%] flex flex-col items-center bg-white border border-slate-300 py-3 lg:mt-10 rounded-lg"
+      class="w-[350px] max-w-[95%] flex flex-col items-center bg-white py-3 mt-3 lg:mt-20 rounded-lg"
     >
       <img
         src="./assets/title.png"
@@ -49,7 +49,7 @@ function logout() {
 
   <div
     v-if="logoutLink"
-    class="flex fixed top-5 left-5 cursor-pointer opacity-50 hover:opacity-80 duration-100"
+    class="flex fixed top-5 left-5 cursor-pointer opacity-80 hover:opacity-100 duration-100"
     @click="logout()"
   >
     <img

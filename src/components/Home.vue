@@ -33,25 +33,17 @@ async function getData() {
 }
 
 function addToList() {
-  /*if (result.value.length > 0) {
-    if (
-      window.confirm(
-        'Ao adicionar um novo nome, você apagará o sorteio atual. Deseja continuar'
-      )
-    ) {
-      deleteAll()
-    } else {
-      return false
-    }
-  }
-  */
-
-  if (nameInput.value != '') {
-    if (nameList.value.length < 20) {
-      nameList.value.push(nameInput.value)
-      nameInput.value = ''
-    } else {
-      alert('Limite de 20 nomes por sorteio atingido')
+  debugger
+  if (nameList.value.find((element) => element == nameInput.value.trim())) {
+    return false
+  } else {
+    if (nameInput.value != '') {
+      if (nameList.value.length < 20) {
+        nameList.value.push(nameInput.value.trim())
+        nameInput.value = ''
+      } else {
+        alert('Limite de 20 nomes por sorteio atingido')
+      }
     }
   }
 }
@@ -168,8 +160,8 @@ function deleteAll() {
     <div v-if="result.length == 0" class="w-full flex flex-col items-center">
       <h2 class="mt-2">Lista de Nomes</h2>
       <div
-        class="my-2 h-60 rounded w-full border border-slate-300"
-        :class="[nameList.length > 7 ? 'overflow-y-scroll' : 'overflow-hidden']"
+        class="my-2 h-40 rounded w-full border border-slate-300"
+        :class="[nameList.length > 5 ? 'overflow-y-scroll' : 'overflow-hidden']"
       >
         <div v-if="nameList.length > 0">
           <ul v-for="(name, index) in nameList" :key="index">

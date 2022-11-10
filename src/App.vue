@@ -9,9 +9,11 @@ const logoutLink = ref(false)
 const collection = ref(null)
 
 onAuthStateChanged(auth, () => {
+  debugger
   if (
     (auth.currentUser && auth.currentUser.emailVerified) ||
-    (auth.currentUser && auth.currentUser.providerId == 'facebook.com')
+    (auth.currentUser &&
+      auth.currentUser.providerData[0].providerId == 'facebook.com')
   ) {
     collection.value = auth.currentUser.email
     logoutLink.value = true
@@ -28,7 +30,7 @@ function logout() {
 </script>
 
 <template>
-  <div class="flex flex-col justify-center items-center my-10">
+  <div class="flex flex-col justify-center items-center mt-10 lg:mt-7 mb-3">
     <div
       class="w-[350px] max-w-[95%] flex flex-col items-center bg-white py-3 mt-3 lg:mt-20 rounded-lg"
     >

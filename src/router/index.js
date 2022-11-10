@@ -4,7 +4,7 @@ import Result from '../components/Result.vue'
 import Login from '../components/Login.vue'
 import SiginUp from '../components/SiginUp.vue'
 import ResetPass from '../components/ResetPass.vue'
-import { getAuth } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,21 +41,26 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const currentUser = getAuth().currentUser
-
-  // rota obriga usuário logado
+  debugger
   if (to.meta.authUsuario) {
-    // usuário está logado?
-    if (
-      currentUser &&
-      (currentUser.emailVerified || currentUser.providerId == 'facebook.com')
-    ) {
-      next()
-    } else {
-      //CORRIGIR AQUI DEPOIS PRA SÓ PERMITIR COM LOGIN
-      next('/login')
-      //next()
-    }
+    const auth = getAuth()
+
+    onAuthStateChanged(auth, () => {
+      if (auth.currentUser) {
+        if (
+          auth.currentUser.emailVerified ||
+          auth.currentUser.providerData[0].providerId == 'facebook.com'
+        ) {
+          next()
+        } else {
+          //CORRIGIR AQUI DEPOIS PRA SÓ PERMITIR COM LOGIN
+          next('/login')
+          //next()
+        }
+      } else {
+        next('/login')
+      }
+    })
   } else {
     next()
   }

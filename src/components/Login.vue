@@ -18,8 +18,6 @@ const passInput = ref(null)
 const providerFacebook = new FacebookAuthProvider()
 const providerGoogle = new GoogleAuthProvider()
 
-auth.signOut()
-
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
@@ -83,7 +81,9 @@ function handleGoogleLogin() {
     />
     <div class="flex justify-between text-xs my-2">
       <a href="" @click="router.push({ name: 'SiginUp' })">Criar nova conta</a>
-      <a href="">Esqueceu a senha?</a>
+      <a href="" @click="router.push({ name: 'ResetPass' })"
+        >Esqueceu a senha?</a
+      >
     </div>
     <button @click="login()">Entrar</button>
 

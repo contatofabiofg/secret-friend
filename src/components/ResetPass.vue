@@ -28,7 +28,7 @@ function resetPass() {
   <div class="flex flex-col justify-center h-full">
     <label for="email">E-mail</label>
     <input type="text" id="email" v-model="emailInput" />
-    <button @click="resetPass()">Redefinir Senha</button>
+    <button @click="resetPass()" class="w-full mt-4">Redefinir Senha</button>
     <button @click="router.push('/')" class="w-full">Ir para a Home</button>
   </div>
 </template>

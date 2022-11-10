@@ -8,6 +8,7 @@ import {
   FacebookAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendEmailVerification,
 } from 'firebase/auth'
 
 const router = useRouter()
@@ -16,6 +17,8 @@ const emailInput = ref('')
 const passInput = ref(null)
 const providerFacebook = new FacebookAuthProvider()
 const providerGoogle = new GoogleAuthProvider()
+
+auth.signOut()
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -33,7 +36,25 @@ onAuthStateChanged(auth, (user) => {
 function login() {
   signInWithEmailAndPassword(auth, emailInput.value, passInput.value)
     .then(() => {
-      router.push({ name: 'Home' })
+      if (auth.currentUser.emailVerified) {
+        router.push({ name: 'Home' })
+      } else {
+        if (
+          window.confirm(
+            'Email não verificado. Gostaria de receber um email de verificação?'
+          )
+        ) {
+          sendEmailVerification(auth.currentUser)
+            .then(() => {
+              alert('E-mail de verificação enviado! :)')
+            })
+            .catch((error) => {
+              alert('E-mail de verificação não enviado! :(' + error)
+            })
+        } else {
+          return false
+        }
+      }
     })
     .catch((error) => {
       alert(error)
@@ -52,9 +73,14 @@ function handleGoogleLogin() {
 <template>
   <div class="flex flex-col justify-center h-full">
     <label for="email">Email</label>
-    <input type="text" id="email" v-model="emailInput" />
+    <input type="text" id="email" v-model="emailInput" @keyup.enter="login()" />
     <label for="pass">Senha</label>
-    <input type="password" id="pass" v-model="passInput" />
+    <input
+      type="password"
+      id="pass"
+      v-model="passInput"
+      @keyup.enter="login()"
+    />
     <div class="flex justify-between text-xs my-2">
       <a href="" @click="router.push({ name: 'SiginUp' })">Criar nova conta</a>
       <a href="">Esqueceu a senha?</a>

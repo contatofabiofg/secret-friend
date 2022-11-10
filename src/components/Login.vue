@@ -14,7 +14,6 @@ const router = useRouter()
 const auth = getAuth()
 const emailInput = ref('')
 const passInput = ref(null)
-const user = ref(null)
 const providerFacebook = new FacebookAuthProvider()
 const providerGoogle = new GoogleAuthProvider()
 
@@ -33,11 +32,8 @@ onAuthStateChanged(auth, (user) => {
 
 function login() {
   signInWithEmailAndPassword(auth, emailInput.value, passInput.value)
-    .then((userCredential) => {
-      // Signed in
-      user.value = userCredential.user
+    .then(() => {
       router.push({ name: 'Home' })
-      // ...
     })
     .catch((error) => {
       alert(error)

@@ -7,7 +7,6 @@ const router = useRouter()
 const auth = getAuth()
 const emailInput = ref(null)
 const passInput = ref(null)
-const pass2Input = ref(null)
 const user = ref(null)
 
 function createUser() {
@@ -35,9 +34,8 @@ function createUser() {
     <input type="text" id="email" v-model="emailInput" />
     <label for="pass">Senha</label>
     <input type="password" id="pass" v-model="passInput" />
-    <label for="pass2">Repita sua senha</label>
-    <input type="password" id="pass2" v-model="pass2Input" />
     <button @click="createUser">Cadastrar</button>
+    <button @click="router.push('/')" class="w-full">Ir para a Home</button>
   </div>
 </template>
 

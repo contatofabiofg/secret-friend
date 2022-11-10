@@ -9,7 +9,10 @@ const logoutLink = ref(false)
 const collection = ref(null)
 
 onAuthStateChanged(auth, () => {
-  if (auth.currentUser) {
+  if (
+    (auth.currentUser && auth.currentUser.emailVerified) ||
+    (auth.currentUser && auth.currentUser.providerId == 'facebook.com')
+  ) {
     collection.value = auth.currentUser.email
     logoutLink.value = true
   } else {

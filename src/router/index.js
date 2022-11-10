@@ -3,7 +3,8 @@ import Home from '../components/Home.vue'
 import Result from '../components/Result.vue'
 import Login from '../components/Login.vue'
 import SiginUp from '../components/SiginUp.vue'
-import { getAuth } from 'firebase/auth'
+import ResetPass from '../components/ResetPass.vue'
+import { getAuth, sendEmailVerification } from 'firebase/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +32,11 @@ const router = createRouter({
       name: 'SiginUp',
       component: SiginUp,
     },
+    {
+      path: '/resetpass',
+      name: 'ResetPass',
+      component: ResetPass,
+    },
   ],
 })
 
@@ -41,7 +47,26 @@ router.beforeEach((to, from, next) => {
   if (to.meta.authUsuario) {
     // usuário está logado?
     if (currentUser) {
-      next()
+      if (currentUser.providerId == 'facebook.com') {
+        next()
+      } else if (currentUser.emailVerified) {
+        next()
+      } else {
+        if (
+          window.confirm(
+            'Email não verificado. Gostaria de receber um email de verificação?'
+          )
+        ) {
+          console.log(currentUser)
+          sendEmailVerification(currentUser)
+            .then(() => {
+              alert('E-mail de verificação enviado! :)')
+            })
+            .catch((error) => {
+              alert('E-mail de verificação não enviado! :(' + error)
+            })
+        }
+      }
     } else {
       //CORRIGIR AQUI DEPOIS PRA SÓ PERMITIR COM LOGIN
       next('/login')

@@ -15,6 +15,7 @@ const copyClicked = ref(false)
 
 onAuthStateChanged(auth, () => {
   if (auth.currentUser) {
+    console.log(auth.currentUser)
     collection.value = auth.currentUser.email
     getData()
   }
@@ -32,7 +33,7 @@ async function getData() {
 }
 
 function addToList() {
-  if (result.value.length > 0) {
+  /*if (result.value.length > 0) {
     if (
       window.confirm(
         'Ao adicionar um novo nome, você apagará o sorteio atual. Deseja continuar'
@@ -43,6 +44,7 @@ function addToList() {
       return false
     }
   }
+  */
 
   if (nameInput.value != '') {
     if (nameList.value.length < 20) {
@@ -147,18 +149,20 @@ function deleteAll() {
     >
     <p class="text-xs text-slate-600 mb-4">{{ collection }}</p>
 
-    <label for="name" class="text-xs text-slate-600"
-      >Insira pelo menos três nomes</label
-    >
-    <div class="flex w-full mt-1">
-      <input
-        type="text"
-        id="name"
-        v-model="nameInput"
-        placeholder=""
-        @keyup.enter="addToList()"
-      />
-      <button @click="addToList()">+</button>
+    <div v-if="result.length == 0" class="flex flex-col items-center">
+      <label for="name" class="text-xs text-slate-600"
+        >Insira pelo menos três nomes</label
+      >
+      <div class="flex w-full mt-1">
+        <input
+          type="text"
+          id="name"
+          v-model="nameInput"
+          placeholder=""
+          @keyup.enter="addToList()"
+        />
+        <button @click="addToList()">+</button>
+      </div>
     </div>
 
     <div v-if="result.length == 0" class="w-full flex flex-col items-center">

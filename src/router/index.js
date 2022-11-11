@@ -41,7 +41,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  debugger
   if (to.meta.authUsuario) {
     const auth = getAuth()
 

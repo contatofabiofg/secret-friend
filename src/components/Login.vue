@@ -17,6 +17,7 @@ const emailInput = ref('')
 const passInput = ref(null)
 const providerFacebook = new FacebookAuthProvider()
 const providerGoogle = new GoogleAuthProvider()
+const loading = ref(true)
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -26,6 +27,7 @@ onAuthStateChanged(auth, (user) => {
     router.push({ name: 'Home' })
     // ...
   } else {
+    loading.value = false
     // User is signed out
     // ...
   }
@@ -113,6 +115,12 @@ function handleGoogleLogin() {
         class="w-5 ml-1 inline"
       />
     </div>
+  </div>
+  <div
+    v-if="loading"
+    class="w-screen h-screen flex justify-center items-center bg-white/10 backdrop-blur-sm fixed left-0 top-0 z-10"
+  >
+    <img src="../assets/spinner.gif" alt="carregando" class="w-32" />
   </div>
 </template>
 

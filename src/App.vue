@@ -9,7 +9,6 @@ const logoutLink = ref(false)
 const collection = ref(null)
 
 onAuthStateChanged(auth, () => {
-  debugger
   if (
     (auth.currentUser && auth.currentUser.emailVerified) ||
     (auth.currentUser &&

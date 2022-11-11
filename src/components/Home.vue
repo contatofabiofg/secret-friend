@@ -33,7 +33,6 @@ async function getData() {
 }
 
 function addToList() {
-  debugger
   if (nameList.value.find((element) => element == nameInput.value.trim())) {
     return false
   } else {

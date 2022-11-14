@@ -41,7 +41,7 @@ function addToList() {
         nameList.value.push(nameInput.value.trim())
         nameInput.value = ''
       } else {
-        alert('Limite de 20 nomes por sorteio atingido')
+        alert('Limite de 20 nomes por sorteio atingido!')
       }
     }
   }

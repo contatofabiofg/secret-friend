@@ -1,35 +1,43 @@
-# secret-friend
+## Secret-Friend Vue.js
 
-This template should help get you started developing with Vue 3 in Vite.
+Hello! In this repo am I registring the code from this Secret Santa app. I call this "Secret Friend" becouse, in Brazil, we call "Amigo Secreto". Made with Vite, Vue.js and Firebase to host the data.
 
-## Recommended IDE Setup
+## 🔨 Funcionalities
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Firebase Authentication (Google, Facebook anda E-mail)
+- FireStore to host the data
 
-## Customize configuration
+## ✔️ Technologies
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- `HTML`
+- `CSS`
+- `Javascript`
+  - `Variables and operators`
+  - `Functions`
+  - `if-Else, Switch and For`
+  - ` Array Methods`
+- `Vue.js 3`
+  - `Single File Components`
+  - `v-for`
+  - `v-bind`
+  - `v-if`
+  - `vue-router`
+- `Firebase`
+  - `Authentication`
+  - `FireStore`
+- `Tailwind`
+- `Vite`
 
-## Project Setup
+## 📁 Acessing the project
 
-```sh
-npm install
-```
+https://secret-friend-phi.vercel.app/
 
-### Compile and Hot-Reload for Development
+## 🛠️ To open and to run the project
 
-```sh
-npm run dev
-```
+- Clone this repository
+- To install: npm install
+- To run: npm run dev
 
-### Compile and Minify for Production
+## 📚 More informations
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Make contact ! Send me an email e tell me what do you think: contatofabiofg@hotmail.com

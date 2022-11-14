@@ -1,15 +1,16 @@
+/* eslint-disable no-undef */
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { doc, collection, setDoc, getDocs, deleteDoc } from 'firebase/firestore'
 //import { ref, onUnmounted } from 'vue'
 
 const config = {
-  apiKey: 'AIzaSyB61kMPm3s2bA6ggze9CElLzW9ol0W-5Cw',
-  authDomain: 'vue-secret-friend.firebaseapp.com',
-  projectId: 'vue-secret-friend',
-  storageBucket: 'vue-secret-friend.appspot.com',
-  messagingSenderId: '330694535357',
-  appId: '1:330694535357:web:8149ba347f807119c0efd4',
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
 }
 
 const firebaseApp = initializeApp(config)

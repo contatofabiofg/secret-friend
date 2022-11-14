@@ -1,5 +1,7 @@
 ## Secret-Friend Vue.js
 
+![Novo Projeto](https://user-images.githubusercontent.com/84576249/201650571-6f9481a5-9cf6-4d8f-8e94-3ca9532d8a1c.png)
+
 Hello! In this repo am I registring the code from this Secret Santa app. I call this "Secret Friend" becouse, in Brazil, we call "Amigo Secreto". Made with Vite, Vue.js and Firebase to host the data.
 
 ## 🔨 Funcionalities

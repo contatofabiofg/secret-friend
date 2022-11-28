@@ -2,11 +2,11 @@
 
 ![Novo Projeto](https://user-images.githubusercontent.com/84576249/201650571-6f9481a5-9cf6-4d8f-8e94-3ca9532d8a1c.png)
 
-Hello! In this repo am I registring the code from this Secret Santa app. I call this "Secret Friend" becouse, in Brazil, we call "Amigo Secreto". Made with Vite, Vue.js and Firebase to host the data.
+Hello! In this repo am I registring the code from this Secret Santa app. I call this "Secret Friend" because, in Brazil, we call "Amigo Secreto". Made with Vite, Vue.js and Firebase to host the data.
 
 ## 🔨 Funcionalities
 
-- Firebase Authentication (Google, Facebook anda E-mail)
+- Firebase Authentication (Google, Facebook and E-mail)
 - FireStore to host the data
 
 ## ✔️ Technologies
@@ -18,7 +18,7 @@ Hello! In this repo am I registring the code from this Secret Santa app. I call 
   - `Functions`
   - `if-Else, Switch and For`
   - ` Array Methods`
-- `Vue.js 3`
+- `Vue.js 3 - script setup`
   - `Single File Components`
   - `v-for`
   - `v-bind`
@@ -34,7 +34,7 @@ Hello! In this repo am I registring the code from this Secret Santa app. I call 
 
 https://secret-friend-phi.vercel.app/
 
-## 🛠️ To open and to run the project
+## 🛠️ To open and run the project
 
 - Clone this repository
 - To install: npm install

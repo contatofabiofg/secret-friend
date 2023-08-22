@@ -4,6 +4,7 @@ import Result from '../components/Result.vue'
 import Login from '../components/Login.vue'
 import SiginUp from '../components/SiginUp.vue'
 import ResetPass from '../components/ResetPass.vue'
+import Politc from '../components/Politic.vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 const router = createRouter({
@@ -36,6 +37,11 @@ const router = createRouter({
       path: '/resetpass',
       name: 'ResetPass',
       component: ResetPass,
+    },
+    {
+      path: '/politc',
+      name: 'Politc',
+      component: Politc,
     },
   ],
 })

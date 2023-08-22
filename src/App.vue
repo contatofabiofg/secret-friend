@@ -49,6 +49,10 @@ function logout() {
         Fábio Gonçalves</a
       >
     </div>
+    <div class="text-xs text-white mt-2 opacity-50 cursor-pointer hover:opacity-70" @click="() => router.push({ name: 'Politc' })">
+      Política de Privacidade 
+  
+    </div>
   </div>
 
   <div
